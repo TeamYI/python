@@ -64,7 +64,7 @@ def isValid(value):
 
 
 turn = "X"
-count = 0
+count = 1
 while True:
     if turn == "X":
         positionX = input("X를 놓을 위치 번호를 선택하세요(1~9)")
@@ -100,7 +100,7 @@ while True:
         else:
             turn = "X"
 
-    if count == 10:
+    if count >= 10:
         break
 
 
