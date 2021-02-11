@@ -1,59 +1,49 @@
-# Tic Tac Toe 게임
+# Tic-Tac-Toe 게임
+# 1. 3X3판을 만든다
+# 2. 번갈아가면서 O,X 를 놓는다
+# 3. 같은 모양을 연속으로 세 개 먼저 놓으면 승리한다
 
-inputList = [
-    [" "," "," "],
-    [" "," "," "],
-    [" "," "," "]
-]
+inputDict= {
+    1 : " ", 2 : " ", 3 : " ",
+    4 : " ", 5 : " ", 6 : " ",
+    7 : " ", 8 : " ", 9 : " ",
+}
 
 def checkDuplicate(position):
     duplicateCheck = False
-    sum = 0
-    for row in range(len(inputList)):
-        for j in range(len(inputList[row])):
-            sum += 1
-            if position == sum:
-                if inputList[row][j] != " ":
-                    duplicateCheck = True
-                    break
+    if inputDict[position] != " ":
+        duplicateCheck = True
 
-        if duplicateCheck == True:
-            break 
     return duplicateCheck
 
 def setData(position,value):
-    sum = 0
-    for row in range(len(inputList)):
-        for j in range(len(inputList[row])):
-            sum += 1
-            if position == sum:
-                inputList[row][j] = value
-    
+    inputDict[position] = value
 
 
 def printBoard():
-    rowsCount = len(inputList)
-    for row in range(rowsCount):
-        print("{}|{}|{}".format(inputList[row][0],inputList[row][1],inputList[row][2]))
-        if row != 2:
-            print("------")
+    print("{}|{}|{}".format(inputDict[1],inputDict[2],inputDict[3]))
+    print("------")
+    print("{}|{}|{}".format(inputDict[4],inputDict[5],inputDict[6]))
+    print("------")
+    print("{}|{}|{}".format(inputDict[7],inputDict[8],inputDict[9]))
+
 
 def confirmVictory(turn):
-    if inputList[0][0] == turn and inputList[0][1]  == turn and inputList[0][2] == turn:
+    if inputDict[1] == turn and inputDict[2]  == turn and inputDict[3] == turn:
          return True
-    elif inputList[0][0] == turn and inputList[1][1]  == turn and inputList[2][2] == turn:
+    elif inputDict[1] == turn and inputDict[4]  == turn and inputDict[7] == turn:
          return True
-    elif inputList[0][0] == turn and inputList[1][0]  == turn and inputList[2][0] == turn:
+    elif inputDict[1] == turn and inputDict[5]  == turn and inputDict[9] == turn:
          return True
-    elif inputList[1][0] == turn and inputList[1][1]  == turn and inputList[1][2] == turn:
+    elif inputDict[4] == turn and inputDict[5]  == turn and inputDict[6] == turn:
          return True
-    elif inputList[2][0] == turn and inputList[2][1]  == turn and inputList[2][2] == turn:
+    elif inputDict[7] == turn and inputDict[8]  == turn and inputDict[9] == turn:
          return True
-    elif inputList[0][1] == turn and inputList[1][1]  == turn and inputList[2][1] == turn:
+    elif inputDict[2] == turn and inputDict[5]  == turn and inputDict[8] == turn:
          return True
-    elif inputList[2][0] == turn and inputList[1][1]  == turn and inputList[0][2] == turn:
+    elif inputDict[7] == turn and inputDict[5]  == turn and inputDict[3] == turn:
          return True
-    elif inputList[0][2] == turn and inputList[1][2]  == turn and inputList[2][2] == turn:
+    elif inputDict[3] == turn and inputDict[6]  == turn and inputDict[9] == turn:
          return True
     else:
          return False
@@ -86,9 +76,7 @@ while True:
         setData(int(positionX),valueX)
         printBoard()
         count += 1
-
         isVictory = confirmVictory(turn)
-
         if isVictory == True:
             break
         else:
